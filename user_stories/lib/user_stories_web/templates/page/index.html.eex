@@ -8,7 +8,9 @@
   <%= for event <- @events do %>
     <div class="col-sm-4 card">
       <div class="card-body">
-        <p class="card-text"><%= event.body %></p>
+        <h5 class="card-title"><%= event.name %></h5>
+        <h6 class"card-subtitle mb-2 text-muted"><%= event.date %></h6>
+        <p class="card-text"><%= event.desc %></p>
         <%= link "view", to: Routes.event_path(@conn, :show, event) %>
       </div>
     </div>
