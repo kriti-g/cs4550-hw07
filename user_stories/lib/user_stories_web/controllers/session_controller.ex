@@ -4,7 +4,7 @@ defmodule UserStoriesWeb.SessionController do
   # https://github.com/NatTuck/scratch-2021-01/blob/master/notes-4550/11-photoblog/notes.md
 
   def create(conn, %{"name" => name}) do
-    user = UserStoriesWeb.Users.get_user_by_name(name)
+    user = UserStories.Users.get_user_by_name(name)
     if user do
       conn
       |> put_session(:user_id, user.id)
