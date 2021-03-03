@@ -17,6 +17,9 @@
         <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
         <% end %>
       </span>
+      <span>
+        <%= link "Register", to: Routes.user_path(@conn, :new) %>
+      </span>
     </nav>
     <%= if get_flash(@conn, :info) do %>
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
