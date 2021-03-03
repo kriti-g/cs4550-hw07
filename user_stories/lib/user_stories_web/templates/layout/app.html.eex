@@ -12,11 +12,11 @@
   <div role="main">
     <nav class="nav bg-light">
       <a class="nav-link">Home</a>
-      <a class="nav-link">
+      <span class="nav-link">
         <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
         <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
         <% end %>
-      </a>
+      </span>
     </nav>
     <%= if get_flash(@conn, :info) do %>
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
