@@ -17,10 +17,32 @@
         <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
         <% end %>
       </span>
+      <%= if @conn.assigns[:current_user] do %>
+        <span class="nav-link disabled">
+          <%= @current_user.name %>
+        </span>
+        <span class="nav-link">
+          <%= link("Logout", to: Routes.session_path(@conn, :delete),
+              method: :delete) %>
+        </span>
+      <% else %>
+      <%= form_for @conn, Routes.session_path(@conn, :create),
+            [class: "form-inline"], fn f -> %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              </div>
+              <%= text_input f, :name, class: "form-control" %>
+              <%= submit "Login", class: "btn btn-info" %>
+            </div>
+      <% end %>
       <span class="nav-link">
         <%= link "Register", to: Routes.user_path(@conn, :new) %>
       </span>
+      <% end %>
     </nav>
+
+
     <%= if get_flash(@conn, :info) do %>
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <% end %>

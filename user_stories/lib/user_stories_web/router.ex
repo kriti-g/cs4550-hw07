@@ -19,6 +19,8 @@ defmodule UserStoriesWeb.Router do
     get "/", PageController, :index
     resources "/events", EventController
     resources "/users", UserController
+    resources "/sessions", SessionController,
+      only: [:create, :delete], singleton: true
   end
 
   # Other scopes may use custom stacks.
