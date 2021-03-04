@@ -5,7 +5,7 @@ config :user_stories, UserStories.Repo,
   username: "user_stories",
   password: "ooToo1ohyo3a",
   database: "user_stories_dev",
-  hostname: "events.gkriti.art",
+  hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
