@@ -15,7 +15,6 @@ defmodule UserStories.Users.User do
     |> cast(attrs, [:name, :email])
     |> validate_required([:name, :email])
     |> validate_format(:email, ~r/@/)
-    |> unsafe_validate_unique(:email) # checks email uniqueness even when above checks fail
     |> unique_constraint(:email)
   end
 end
