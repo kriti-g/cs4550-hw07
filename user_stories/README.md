@@ -1,5 +1,7 @@
 # UserStories
 
+Includes code from and based on Prof Tuck's in-class PhotoBlog example.
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
