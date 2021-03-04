@@ -12,7 +12,7 @@
 </div>
 <div class="form group">
   <%= label f, :date %>
-  <%= datetime_select f, :date, class: "form-control" %>
+  <%= text_input f, :date, class: "form-control" %>
   <%= error_tag f, :date %>
 </div>
 <div class="form group">
@@ -24,3 +24,9 @@
   <%= submit "Save", class: "btn btn-info" %>
 </div>
 <% end %>
+<script type="text/javascript"
+   src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+</script>
+<script type="text/javascript"
+   src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+</script>
