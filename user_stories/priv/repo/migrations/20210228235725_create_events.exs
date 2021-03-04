@@ -4,7 +4,7 @@ defmodule UserStories.Repo.Migrations.CreateEvents do
   def change do
     create table(:events) do
       add :name, :string, null: false
-      add :date, :naive_datetime, null: true
+      add :date, :naive_datetime, null: false
       add :desc, :text, null: false
 
       timestamps()
