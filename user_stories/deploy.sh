@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export SECRET_KEY_BASE=.
+export SECRET_KEY_BASE=0DTh2oqJ7a9XcxYz3MPnH6juoN/w11WA0DK56WX0qMGHXWyFntx201pFAa8Jxyi0
 export MIX_ENV=prod
 export PORT=4804
 export NODEBIN=`pwd`/assets/node_modules/.bin
