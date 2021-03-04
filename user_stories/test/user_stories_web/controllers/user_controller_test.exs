@@ -3,9 +3,9 @@ defmodule UserStoriesWeb.UserControllerTest do
 
   alias UserStories.Users
 
-  @create_attrs %{name: "some name", password: "some password"}
-  @update_attrs %{name: "some updated name", password: "some updated password"}
-  @invalid_attrs %{name: nil, password: nil}
+  @create_attrs %{name: "some name", email: "some email"}
+  @update_attrs %{name: "some updated name", email: "some updated email"}
+  @invalid_attrs %{name: nil, email: nil}
 
   def fixture(:user) do
     {:ok, user} = Users.create_user(@create_attrs)

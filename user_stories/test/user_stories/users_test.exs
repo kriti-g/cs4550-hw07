@@ -6,9 +6,9 @@ defmodule UserStories.UsersTest do
   describe "users" do
     alias UserStories.Users.User
 
-    @valid_attrs %{name: "some name", password: "some password"}
-    @update_attrs %{name: "some updated name", password: "some updated password"}
-    @invalid_attrs %{name: nil, password: nil}
+    @valid_attrs %{name: "some name", email: "some email"}
+    @update_attrs %{name: "some updated name", email: "some updated email"}
+    @invalid_attrs %{name: nil, email: nil}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -32,7 +32,7 @@ defmodule UserStories.UsersTest do
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Users.create_user(@valid_attrs)
       assert user.name == "some name"
-      assert user.password == "some password"
+      assert user.email == "some email"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -43,7 +43,7 @@ defmodule UserStories.UsersTest do
       user = user_fixture()
       assert {:ok, %User{} = user} = Users.update_user(user, @update_attrs)
       assert user.name == "some updated name"
-      assert user.password == "some updated password"
+      assert user.email == "some updated email"
     end
 
     test "update_user/2 with invalid data returns error changeset" do

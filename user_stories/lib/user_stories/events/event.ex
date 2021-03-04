@@ -6,7 +6,6 @@ defmodule UserStories.Events.Event do
     field :date, :naive_datetime
     field :desc, :string
     field :name, :string
-    field :user, :string
 
     timestamps()
   end
@@ -14,7 +13,7 @@ defmodule UserStories.Events.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:name, :user, :date, :desc])
-    |> validate_required([:name, :user, :date, :desc])
+    |> cast(attrs, [:name, :date, :desc])
+    |> validate_required([:name, :date, :desc])
   end
 end
