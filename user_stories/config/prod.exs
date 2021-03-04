@@ -4,13 +4,6 @@ use Mix.Config
 # to something meaningful, Phoenix uses this information
 # when generating URLs.
 #
-config :user_stories, UserStories.Repo,
-  username: "user_stories",
-  password: "ooToo1ohyo3a",
-  database: "user_stories_prod",
-  hostname: "localhost",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
 
 # Note we also include the path to a cache manifest
 # containing the digested version of static files. This
