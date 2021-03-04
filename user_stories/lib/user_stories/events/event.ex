@@ -14,6 +14,6 @@ defmodule UserStories.Events.Event do
   def changeset(event, attrs) do
     event
     |> cast(attrs, [:name, :date, :desc])
-    |> validate_required([:name, :desc])
+    |> validate_required([:name, :date, :desc])
   end
 end
