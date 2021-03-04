@@ -30,6 +30,8 @@ $(function() {
   $('input[name="date-time-picker"]').daterangepicker({
     singleDatePicker: true,
     timePicker: true,
+    timePicker24Hour: true,
+    autoApply: true,
     locale: {
       format: 'YYYY-MM-DD hh:mm:ss'
     }
