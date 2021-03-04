@@ -15,11 +15,6 @@
       <span class="nav-link">
         <%= link "Event List", to: Routes.event_path(@conn, :index) %>
       </span>
-      <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-        <span class="nav-link">
-          <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
-        </span>
-      <% end %>
       <%= if @conn.assigns[:current_user] do %>
         <span class="nav-link disabled">
           <%= @current_user.name %>
@@ -42,6 +37,11 @@
       <span class="nav-link">
         <%= link "Register", to: Routes.user_path(@conn, :new) %>
       </span>
+      <% end %>
+      <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+        <span class="nav-link">
+          <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
+        </span>
       <% end %>
     </nav>
 

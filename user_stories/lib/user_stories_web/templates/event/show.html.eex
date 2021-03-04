@@ -1,9 +1,8 @@
+<h2><%= @event.name %></h2>
+<h6><%= @event.date %></h6>
+<p><%= @event.desc %></p>
+
 <nav class="nav">
   <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
   <span class="nav-link"><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
 </nav>
-
-<h2><%= @event.name %></h2>
-<h5><%= @event.date %></h5>
-<p><%= @event.desc %></p>
-<h6>Id: <%= @event.id%></h6>
