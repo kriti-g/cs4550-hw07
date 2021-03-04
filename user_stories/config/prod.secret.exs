@@ -35,7 +35,7 @@ config :user_stories, UserStoriesWeb.Endpoint,
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-#     config :user_stories, UserStoriesWeb.Endpoint, server: true
+config :user_stories, UserStoriesWeb.Endpoint, server: true
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.
