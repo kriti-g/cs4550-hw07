@@ -2,7 +2,7 @@
 
 export MIX_ENV=prod
 export PORT=4804
-export DATABASE_URL=ecto://user_stories:ooToo1ohyo3a@events.gkriti.art/user_stories_prod
+export DATABASE_URL=ecto://user_stories:ooToo1ohyo3a@gkriti.art/user_stories_prod
 
 # echo "Stopping old copy of app, if any..."
 

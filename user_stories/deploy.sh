@@ -2,7 +2,7 @@
 
 export SECRET_KEY_BASE=0DTh2oqJ7a9XcxYz3MPnH6juoN/w11WA0DK56WX0qMGHXWyFntx201pFAa8Jxyi0
 export MIX_ENV=prod
-export DATABASE_URL=ecto://user_stories:ooToo1ohyo3a@events.gkriti.art/user_stories_prod
+export DATABASE_URL=ecto://user_stories:ooToo1ohyo3a@gkriti.art/user_stories_prod
 export PORT=4804
 export NODEBIN=`pwd`/assets/node_modules/.bin
 export PATH="$PATH:$NODEBIN"
