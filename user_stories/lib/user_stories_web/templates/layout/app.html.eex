@@ -14,7 +14,6 @@
       <span class="nav-link">
         <%= link "Home", to: Routes.page_path(@conn, :index) %>
       </span>
-      <a class="nav-link" href="http://events.gkriti.art">Home</a>
       <span class="nav-link">
         <%= link "Event List", to: Routes.event_path(@conn, :index) %>
       </span>
