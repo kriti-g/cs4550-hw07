@@ -6,9 +6,9 @@ defmodule UserStories.EventsTest do
   describe "events" do
     alias UserStories.Events.Event
 
-    @valid_attrs %{date: ~N[2010-04-17 14:00:00], desc: "some desc", name: "some name", user: "some user"}
-    @update_attrs %{date: ~N[2011-05-18 15:01:01], desc: "some updated desc", name: "some updated name", user: "some updated user"}
-    @invalid_attrs %{date: nil, desc: nil, name: nil, user: nil}
+    @valid_attrs %{date: ~N[2010-04-17 14:00:00], desc: "some desc", name: "some name"}
+    @update_attrs %{date: ~N[2011-05-18 15:01:01], desc: "some updated desc", name: "some updated name"}
+    @invalid_attrs %{date: nil, desc: nil, name: nil}
 
     def event_fixture(attrs \\ %{}) do
       {:ok, event} =
@@ -34,7 +34,6 @@ defmodule UserStories.EventsTest do
       assert event.date == ~N[2010-04-17 14:00:00]
       assert event.desc == "some desc"
       assert event.name == "some name"
-      assert event.user == "some user"
     end
 
     test "create_event/1 with invalid data returns error changeset" do
@@ -47,7 +46,6 @@ defmodule UserStories.EventsTest do
       assert event.date == ~N[2011-05-18 15:01:01]
       assert event.desc == "some updated desc"
       assert event.name == "some updated name"
-      assert event.user == "some updated user"
     end
 
     test "update_event/2 with invalid data returns error changeset" do

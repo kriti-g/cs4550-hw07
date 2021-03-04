@@ -3,8 +3,8 @@ defmodule UserStoriesWeb.SessionController do
   # Code from Nat Tuck's lecture guided notes.
   # https://github.com/NatTuck/scratch-2021-01/blob/master/notes-4550/11-photoblog/notes.md
 
-  def create(conn, %{"name" => name}) do
-    user = UserStories.Users.get_user_by_email(name)
+  def create(conn, %{"email" => email}) do
+    user = UserStories.Users.get_user_by_email(email)
     if user do
       conn
       |> put_session(:user_id, user.id)
