@@ -26,16 +26,16 @@
 <% end %>
 
 <script>
-$(function() {
-  $('input[name="date-time-picker"]').daterangepicker({
-    singleDatePicker: true,
-    timePicker: true,
-    locale: {
-      format: 'YYYY-MM-DD hh:mm:ss A'
-    }
-  });
-
-});
+// $(function() {
+//   $('input[name="date-time-picker"]').daterangepicker({
+//     singleDatePicker: true,
+//     timePicker: true,
+//     locale: {
+//       format: 'YYYY-MM-DD hh:mm:ss A'
+//     }
+//   });
+//
+// });
 </script>
 
 <!-- <script type="text/javascript">
