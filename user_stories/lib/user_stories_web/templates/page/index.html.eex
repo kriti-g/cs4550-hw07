@@ -2,6 +2,7 @@
   <div class="col">
     <h1>Events</h1>
   </div>
+  <span class="btn btn-info"><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
 </div>
 
 <div class="row">

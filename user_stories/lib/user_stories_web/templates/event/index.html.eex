@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
       <th>Date</th>
       <th>Desc</th>
       <th><span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span></th>
@@ -14,14 +13,15 @@
 <%= for event <- @events do %>
     <tr>
       <td><%= event.name %></td>
-      <td><%= event.user %></td>
       <td><%= event.date %></td>
       <td><%= event.desc %></td>
 
       <td>
-        <span><%= link "Show", to: Routes.event_path(@conn, :show, event) %></span>
-        <span><%= link "Edit", to: Routes.event_path(@conn, :edit, event) %></span>
-        <span><%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      <nav class="nav">
+        <span class="nav-link"><%= link "Show", to: Routes.event_path(@conn, :show, event) %></span>
+        <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, event) %></span>
+        <span class="nav-link"><%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </nav>
       </td>
     </tr>
 <% end %>
