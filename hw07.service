@@ -1,0 +1,18 @@
+[Unit]
+Description=HW07 Events
+
+[Service]
+Type=simple
+User=hw07
+Group=hw07
+Restart=on-failure
+Environment=MIX_ENV=prod
+Environment=PORT=4804
+Environment=PROD=true
+Environment=LANG=en_US.UTF-8
+
+WorkingDirectory=/home/hw05/cs4550-hw07/user_stories
+ExecStart=/bin/bash /home/hw05/cs4550-hw07/user_stories/start.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -30,7 +30,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">@</span>
               </div>
-              <%= text_input f, :name, class: "form-control" %>
+              <%= text_input f, :email, class: "form-control" %>
               <%= submit "Login", class: "btn btn-info" %>
             </div>
       <% end %>
