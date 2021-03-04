@@ -30,16 +30,14 @@ $(function() {
   $('input[name="date-time-picker"]').daterangepicker({
     singleDatePicker: true,
     timePicker: true,
-    timePicker24Hour: true,
-    autoApply: true,
     locale: {
-      format: 'YYYY-MM-DD hh:mm:ss'
+      format: 'YYYY-MM-DD hh:mm:ss A'
     }
   });
 
-  $('input[name="date-time-picker"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('YYYY-MM-DD hh:mm:ss'));
-  });
+  // $('input[name="date-time-picker"]').on('apply.daterangepicker', function(ev, picker) {
+  //     $(this).val(picker.startDate.format('YYYY-MM-DD hh:mm:ss'));
+  // });
 });
 </script>
 
