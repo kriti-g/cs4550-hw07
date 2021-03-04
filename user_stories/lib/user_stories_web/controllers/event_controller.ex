@@ -10,7 +10,7 @@ defmodule UserStoriesWeb.EventController do
   end
 
   def new(conn, _params) do
-    changeset = Events.change_event(%Event{date:~N[2021-03-05 22:22:00]})
+    changeset = Events.change_event(%Event{date: ~N[2021-03-05 22:22:00]})
     render(conn, "new.html", changeset: changeset)
   end
 
