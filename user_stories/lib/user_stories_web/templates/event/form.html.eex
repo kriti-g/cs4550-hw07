@@ -26,8 +26,12 @@
 <% end %>
 
 <script type="text/javascript">
-  flatpickr(".date-time-picker1", {
-    enableTime: true,
-    dateFormat: "Y-m-d H:i",
+//   flatpickr(".date-time-picker1", {
+//     enableTime: true,
+//     dateFormat: "YYYY-MM-DD HH:MM",
+// });
+$(".date-time-picker1").flatpickr({
+  enableTime: true,
+  dateFormat: "YYYY-MM-DD HH:MM",
 });
 </script>
