@@ -10,9 +10,9 @@
   <%= text_input f, :name, class: "form-control" %>
   <%= error_tag f, :name %>
 </div>
-<div class="form-group date-time-picker1">
+<div class="form-group">
     <%= label f, :date %>
-    <%= text_input f, :date, class: "form-control date-time-picker1", name: "date-time-picker" %>
+    <%= text_input f, :date, class: "form-control", name: "date-time-picker", value: "2021-07-06 00:00:00" %>
     <%= error_tag f, :date %>
 </div>
 <div class="form group">
