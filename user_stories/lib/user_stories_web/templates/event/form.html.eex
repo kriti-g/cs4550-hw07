@@ -10,6 +10,14 @@
   <%= text_input f, :name, class: "form-control" %>
   <%= error_tag f, :name %>
 </div>
+<div class="form-group">
+  <div class='input-group date' id='datetimepicker1'>
+    <%= text_input f, :date, class: "form-control my-date-time-picker" %>
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+</div>
 <div class="form group">
   <%= label f, :date %>
   <%= text_input f, :date, class: "form-control my-date-time-picker" %>
@@ -25,8 +33,7 @@
 </div>
 <% end %>
 <script type="text/javascript">
-      $('.my-date-time-picker').datetimepicker({
-        format: 'dd/MM/yyyy hh:mm:ss',
-        language: 'pt-BR'
-      });
+$(function () {
+  $('#datetimepicker1').datetimepicker();
+});
 </script>
