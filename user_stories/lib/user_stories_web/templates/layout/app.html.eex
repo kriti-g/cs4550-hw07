@@ -13,7 +13,7 @@
     <nav class="nav bg-light">
       <a class="nav-link" href="http://events.gkriti.art">Home</a>
       <span class="nav-link">
-        <%= link "Event List", to: Routes.event_path(@conn, :home) %>
+        <%= link "Event List", to: Routes.event_path(@conn, :index) %>
       </span>
       <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
         <span class="nav-link">
