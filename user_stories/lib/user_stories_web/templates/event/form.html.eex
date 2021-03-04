@@ -12,7 +12,7 @@
 </div>
 <div class="form-group date-time-picker1">
     <%= label f, :date %>
-    <%= text_input f, :date, class: "form-control date-time-picker1" %>
+    <%= text_input f, :date, class: "form-control date-time-picker1" name:"date-time-picker" %>
     <%= error_tag f, :date %>
 </div>
 <div class="form group">
@@ -25,7 +25,19 @@
 </div>
 <% end %>
 
-<script type="text/javascript">
+<script>
+$(function() {
+  $('input[name="date-time-picker"]').daterangepicker({
+    singleDatePicker: true,
+    timePicker: true,
+    locale: {
+      format: 'YYYY-MM-DD hh:mm:ss'
+    }
+  });
+});
+</script>
+
+<!-- <script type="text/javascript">
 //   flatpickr(".date-time-picker1", {
 //     enableTime: true,
 //     dateFormat: "YYYY-MM-DD HH:MM",
@@ -34,4 +46,4 @@ $(".date-time-picker1").flatpickr({
   enableTime: true,
   dateFormat: "YYYY-MM-DD HH:MM",
 });
-</script>
+</script> -->

@@ -6,7 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Stories</title>
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+
   <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
   <div role="main">
@@ -18,44 +23,42 @@
         <%= link "Event List", to: Routes.event_path(@conn, :index) %>
       </span>
       <%= if @conn.assigns[:current_user] do %>
-        <span class="nav-link disabled">
-          <%= @current_user.name %>
-        </span>
-        <span class="nav-link">
-          <%= link("Logout", to: Routes.session_path(@conn, :delete),
-              method: :delete) %>
-        </span>
+      <span class="nav-link disabled">
+        <%= @current_user.name %>
+      </span>
+      <span class="nav-link">
+        <%= link("Logout", to: Routes.session_path(@conn, :delete),
+        method: :delete) %>
+      </span>
       <% else %>
       <%= form_for @conn, Routes.session_path(@conn, :create),
-            [class: "form-inline"], fn f -> %>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-              </div>
-              <%= text_input f, :email, class: "form-control" %>
-              <%= submit "Login", class: "btn btn-info" %>
-            </div>
+      [class: "form-inline"], fn f -> %>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <%= text_input f, :email, class: "form-control" %>
+        <%= submit "Login", class: "btn btn-info" %>
+      </div>
       <% end %>
       <span class="nav-link">
         <%= link "Register", to: Routes.user_path(@conn, :new) %>
       </span>
       <% end %>
       <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-        <span class="nav-link">
-          <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
-        </span>
+      <span class="nav-link">
+        <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
+      </span>
       <% end %>
     </nav>
-
-
+  </div>
+  <div class="container">
     <%= if get_flash(@conn, :info) do %>
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <% end %>
     <%= if get_flash(@conn, :error) do %>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
     <% end %>
-  </div>
-  <div class="container">
     <%= @inner_content %>
   </div>
 </body>
