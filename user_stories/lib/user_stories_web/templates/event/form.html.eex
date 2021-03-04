@@ -10,15 +10,10 @@
   <%= text_input f, :name, class: "form-control" %>
   <%= error_tag f, :name %>
 </div>
-<div class="form-group">
-  <div class='input-group date' id='datetimepicker1'>
+<div class="form-group date-time-picker1">
     <%= label f, :date %>
-    <%= text_input f, :date, class: "form-control my-date-time-picker" %>
+    <%= text_input f, :date, class: "form-control" %>
     <%= error_tag f, :date %>
-    <span class="input-group-addon">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </span>
-  </div>
 </div>
 <div class="form group">
   <%= label f, :desc %>
@@ -31,7 +26,8 @@
 <% end %>
 
 <script type="text/javascript">
-$(function () {
-  $('#datetimepicker1').datetimepicker();
+  flatpickr(".date-time-picker1", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
 });
 </script>
