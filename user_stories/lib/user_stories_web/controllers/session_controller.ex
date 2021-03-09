@@ -17,6 +17,7 @@ defmodule UserStoriesWeb.SessionController do
     end
   end
 
+#why
   def delete(conn, _params) do
     conn
     |> delete_session(:user_id)
