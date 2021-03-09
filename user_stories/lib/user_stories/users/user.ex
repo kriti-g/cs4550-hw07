@@ -6,6 +6,8 @@ defmodule UserStories.Users.User do
     field :name, :string
     field :email, :string
 
+    has_many :posts, UserStories.Events.Event
+
     timestamps()
   end
 

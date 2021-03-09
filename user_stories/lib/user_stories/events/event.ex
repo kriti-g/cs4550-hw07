@@ -7,6 +7,8 @@ defmodule UserStories.Events.Event do
     field :desc, :string
     field :name, :string
 
+    belongs_to :user, UserStories.Users.User
+
     timestamps()
   end
 
