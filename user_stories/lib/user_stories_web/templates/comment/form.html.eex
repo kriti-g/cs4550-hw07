@@ -5,8 +5,8 @@
     </div>
   <% end %>
 
-  <%= hidden_input f, :post_id %>
-  <%= error_tag f, :post_id %>
+  <%= hidden_input f, :event_id %>
+  <%= hidden_input f, :user_id %>
 
   <div class="form-group">
     <%= label f, :body %>
