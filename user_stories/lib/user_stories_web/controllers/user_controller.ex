@@ -27,6 +27,7 @@ defmodule UserStoriesWeb.UserController do
       Map.put(user_params, "photo_hash", hash)
     end
 
+    IO.inspect(%{:create3 => user_params})
     case Users.create_user(user_params) do
       {:ok, user} ->
         conn
