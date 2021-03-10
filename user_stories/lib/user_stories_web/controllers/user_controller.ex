@@ -17,7 +17,7 @@ defmodule UserStoriesWeb.UserController do
 
   def create(conn, %{"user" => user_params}) do
     up = user_params["photo"]
-    IO.inspect(up)
+    IO.inspect(:create, up)
     user_params = if up do
       {:ok, hash} = Photos.save_photo(up.filename, up.path)
       Map.put(user_params, "photo_hash", hash)
