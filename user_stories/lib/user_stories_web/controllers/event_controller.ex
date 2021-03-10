@@ -55,8 +55,8 @@ defmodule UserStoriesWeb.EventController do
    end
  end
 
-  def show(conn, %{"id" => id}) do
-    event = conn.assigns[:event]
+  def show(conn, %{"id" => _id}) do
+    event = Events.load_comments(conn.assigns[:event])
     comm = %Comments.Comment{
       event_id: event.id,
       user_id: current_user_id(conn)
@@ -65,13 +65,13 @@ defmodule UserStoriesWeb.EventController do
     render(conn, "show.html", event: event, new_comment: new_comment)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => _id}) do
     event = conn.assigns[:event]
     changeset = Events.change_event(event)
     render(conn, "edit.html", event: event, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "event" => event_params}) do
+  def update(conn, %{"id" => _id, "event" => event_params}) do
     event = conn.assigns[:event]
 
     case Events.update_event(event, event_params) do
@@ -85,7 +85,7 @@ defmodule UserStoriesWeb.EventController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => _id}) do
     event = conn.assigns[:event]
     {:ok, _event} = Events.delete_event(event)
 

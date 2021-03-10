@@ -21,3 +21,14 @@
     action: Routes.comment_path(@conn, :create)
   ) %>
 <% end %>
+
+<h3>Comments</h3>
+
+<%= for comm <- @event.comments do %>
+  <div class="card">
+    <div class="card-body">
+      <p>Posted by <%= comm.user.name %></p>
+      <p class="card-text"><%= comm.body %></p>
+    </div>
+  </div>
+<% end %>

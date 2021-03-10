@@ -15,6 +15,8 @@ defmodule UserStoriesWeb.CommentController do
   end
 
   def create(conn, %{"comment" => comment_params}) do
+    comment_params = comment_params
+    |> Map.put("user_id", current_user_id(conn))
     case Comments.create_comment(comment_params) do
       {:ok, comment} ->
         conn
