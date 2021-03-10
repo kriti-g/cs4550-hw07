@@ -10,3 +10,14 @@
   <% end %>
   <span class="nav-link"><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
 </nav>
+
+<h3>Add Comment</h3>
+
+<%= if have_current_user?(@conn) do %>
+  <%= render(
+    UserStoriesWeb.CommentView,
+    "form.html",
+    changeset: @new_comment,
+    action: Routes.comment_path(@conn, :create)
+  ) %>
+<% end %>

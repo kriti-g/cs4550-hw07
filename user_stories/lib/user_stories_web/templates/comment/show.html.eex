@@ -3,8 +3,8 @@
 <ul>
 
   <li>
-    <strong> body:</strong>
-    <%= @comment. body %>
+    <strong>body:</strong>
+    <%= @comment.body %>
   </li>
 
 </ul>

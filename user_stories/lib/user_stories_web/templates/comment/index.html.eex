@@ -3,15 +3,14 @@
 <table>
   <thead>
     <tr>
-      <th> body</th>
-
+      <th>body</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for comment <- @comments do %>
     <tr>
-      <td><%= comment. body %></td>
+      <td><%= comment.body %></td>
 
       <td>
         <span><%= link "Show", to: Routes.comment_path(@conn, :show, comment) %></span>
