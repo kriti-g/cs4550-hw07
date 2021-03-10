@@ -38,7 +38,6 @@ defmodule UserStories.Events do
   """
   def get_event!(id), do
     Repo.get!(Event, id)
-    |> Repo.preload(:user)
   end
 
   @doc """
