@@ -69,6 +69,7 @@ defmodule UserStoriesWeb do
 
       import UserStoriesWeb.ErrorHelpers
       import UserStoriesWeb.Gettext
+      import UserStoriesWeb.Helpers
       alias UserStoriesWeb.Router.Helpers, as: Routes
     end
   end
