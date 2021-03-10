@@ -17,17 +17,17 @@ defmodule UserStoriesWeb.UserController do
 
   def create(conn, %{"user" => user_params}) do
     up = user_params["photo"]
-    IO.inspect(%{:create1 => up})
+    IO.inspect([:create1, up])
     user_params = if up do
       {:ok, hash} = Photos.save_photo(up.filename, up.path)
       Map.put(user_params, "photo_hash", hash)
     else
       hash = Photos.get_default()
-      IO.inspect(%{:create2 => hash})
+      IO.inspect([:create2, hash])
       Map.put(user_params, "photo_hash", hash)
     end
 
-    IO.inspect(%{:create3 => user_params})
+    IO.inspect([:create3, user_params])
     case Users.create_user(user_params) do
       {:ok, user} ->
         conn
