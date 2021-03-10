@@ -1,4 +1,5 @@
 defmodule UserStories.Photos do
+
   def save_photo(name, path) do
     data = File.read!(path)
     hash = sha256(data)
@@ -67,7 +68,7 @@ defmodule UserStories.Photos do
   def get_default do
     photos = Application.app_dir(:user_stories, "priv/photos")
     path = Path.join(photos, "profile.png")
-    {:ok, hash} = Photos.save_photo("profile.png", path)
+    {:ok, hash} = save_photo("profile.png", path)
     hash
   end
 end
