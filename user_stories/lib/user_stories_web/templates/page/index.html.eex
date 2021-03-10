@@ -6,21 +6,19 @@
 
 <div class="row">
   <div>
-    <!-- <%= if have_current_user?(@conn) do %> -->
-      <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
-    <!-- <% end %> -->
+    <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
   </div>
 </div>
 
 <div class="row">
   <%= for event <- @events do %>
-    <div class="col-sm-4 card">
-      <div class="card-body">
-        <h5 class="card-title"><%= event.name %></h5>
-        <h6 class"card-subtitle mb-2 text-muted"><%= event.date %></h6>
-        <p class="card-text"><%= event.desc %></p>
-        <%= link "View Event", to: Routes.event_path(@conn, :show, event) %>
-      </div>
+  <div class="col-sm-4 card">
+    <div class="card-body">
+      <h5 class="card-title"><%= event.name %></h5>
+      <h6 class"card-subtitle mb-2 text-muted"><%= event.date %></h6>
+      <p class="card-text"><%= event.desc %></p>
+      <%= link "View Event", to: Routes.event_path(@conn, :show, event) %>
     </div>
+  </div>
   <% end %>
 </div>
