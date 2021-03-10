@@ -24,6 +24,7 @@ defmodule UserStoriesWeb.UserController do
     else
       hash = Photos.get_default()
       Map.put(user_params, "photo_hash", hash)
+    end
 
     case Users.create_user(user_params) do
       {:ok, user} ->
