@@ -71,8 +71,8 @@ defmodule UserStoriesWeb.UserController do
   end
 
   def photo(conn, %{"id" => id}) do
-   post = Posts.get_post!(id)
-   {:ok, _name, data} = Photos.load_photo(post.photo_hash)
+   user = Users.get_user!(id)
+   {:ok, _name, data} = Photos.load_photo(user.photo_hash)
    conn
    |> put_resp_content_type("image/jpeg")
    |> send_resp(200, data)
