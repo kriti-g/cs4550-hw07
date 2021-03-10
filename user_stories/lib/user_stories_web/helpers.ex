@@ -1,6 +1,6 @@
 defmodule UserStoriesWeb.Helpers do
-  alias PhotoBlog.Users.User
-  
+  alias UserStories.Users.User
+
   def current_user_id(conn) do
     user = conn.assigns[:current_user]
     user && user.id
