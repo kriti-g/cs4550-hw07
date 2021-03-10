@@ -9,12 +9,11 @@
   <%= hidden_input f, :user_id %>
 
   <div class="form-group">
-    <%= label f, :body %>
     <%= textarea f, :body, class: "form-control" %>
     <%= error_tag f, :body %>
   </div>
 
   <div>
-    <%= submit "Save", class: "btn btn-primary"%>
+    <%= submit "Post comment", class: "btn btn-primary"%>
   </div>
 <% end %>

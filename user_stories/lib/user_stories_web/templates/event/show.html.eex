@@ -11,7 +11,8 @@
   <span class="nav-link"><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
 </nav>
 
-<h3>Add Comment</h3>
+
+<h5>Comments</h5>
 
 <%= if have_current_user?(@conn) do %>
   <%= render(
@@ -22,12 +23,10 @@
   ) %>
 <% end %>
 
-<h3>Comments</h3>
-
 <%= for comm <- @event.comments do %>
   <div class="card">
     <div class="card-body">
-      <p>Posted by <%= comm.user.name %></p>
+      <p>Posted by <%= comm.user.name %> at <%=comm.inserted_at%></p>
       <p class="card-text"><%= comm.body %></p>
     </div>
   </div>
