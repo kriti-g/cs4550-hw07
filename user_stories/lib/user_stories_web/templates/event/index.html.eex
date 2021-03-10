@@ -6,6 +6,7 @@
       <th>Name</th>
       <th>Date</th>
       <th>Desc</th>
+      <th>User</th>
       <th><span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span></th>
     </tr>
   </thead>
@@ -15,7 +16,7 @@
       <td><%= event.name %></td>
       <td><%= event.date %></td>
       <td><%= event.desc %></td>
-
+      <td></td>
       <td>
       <nav class="nav">
         <span class="nav-link"><%= link "Show", to: Routes.event_path(@conn, :show, event) %></span>
