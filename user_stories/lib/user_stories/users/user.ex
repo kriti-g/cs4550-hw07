@@ -8,6 +8,7 @@ defmodule UserStories.Users.User do
     field :photo_hash, :string
 
     has_many :events, UserStories.Events.Event
+    has_many :comments, UserStories.Comments.Comment
 
     timestamps()
   end

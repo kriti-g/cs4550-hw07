@@ -8,6 +8,7 @@ defmodule UserStories.Events.Event do
     field :name, :string
 
     belongs_to :user, UserStories.Users.User
+    has_many :comments, UserStories.Comments.Comment
 
     timestamps()
   end

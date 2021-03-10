@@ -3,9 +3,10 @@ defmodule UserStories.Comments.Comment do
   import Ecto.Changeset
 
   schema "comments" do
-    field :" body", :string
-    field :" event_id", :id
-    field :user_id, :id
+    field :body, :string
+
+    belongs_to :event, UserStories.Events.Event
+    belongs_to :user, UserStories.Users.User
 
     timestamps()
   end
@@ -13,7 +14,7 @@ defmodule UserStories.Comments.Comment do
   @doc false
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:" body"])
-    |> validate_required([:" body"])
+    |> cast(attrs, [:body, :event_id, :user_id])
+    |> validate_required([:body, :event_id, :user_id])
   end
 end
