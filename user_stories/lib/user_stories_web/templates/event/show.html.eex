@@ -1,7 +1,7 @@
 <h1>Show Event</h1>
 
 <h2><%= @event.name %></h2>
-<h6><%= @event.date %> - Event by <%= @event.user.name %></h6>
+<h6><%= @event.date %></h6>
 <p><%= @event.desc %></p>
 
 <nav class="nav">
