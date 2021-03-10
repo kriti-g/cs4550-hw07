@@ -10,11 +10,11 @@ defmodule UserStoriesWeb.Helpers do
     conn.assigns[:current_user] != nil
   end
 
-  def current_user_is?(conn, %User{} = user) do
-    current_user_is?(conn, user.id)
-  end
-
-  def current_user_is?(conn, user_id) do
-    current_user_id(conn) == user_id
-  end
+  # def current_user_is?(conn, %User{} = user) do
+  #   current_user_is?(conn, user.id)
+  # end
+  #
+  # def current_user_is?(conn, user_id) do
+  #   current_user_id(conn) == user_id
+  # end
 end

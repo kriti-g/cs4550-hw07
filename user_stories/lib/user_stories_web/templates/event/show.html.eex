@@ -4,7 +4,7 @@
 <p><%= @event.desc %></p>
 
 <nav class="nav">
-  <%= if current_user_is?(@conn, @event.user.id) do %>
+  <%= if current_user_is?(@conn, @event.user) do %>
   <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
   <% end %>
   <span class="nav-link"><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
