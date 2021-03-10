@@ -20,5 +20,18 @@ hash = Photos.get_default()
 alice = Repo.insert!(%User{name: "alice", photo_hash: hash, email: "alice@email.com"})
 bob = Repo.insert!(%User{name: "bob", photo_hash: hash, email: "bob@email.com"})
 
-Repo.insert!(%Event{user_id: alice.id, name: "Alice Post", desc: "Alice says Hi!", date: ~N[2001-01-01 23:00:00]})
-Repo.insert!(%Event{user_id: bob.id, name: "Bob Post", desc: "Bob says garblarg!", date: ~N[2004-01-19 23:00:00]})
+p1 = %Event{
+  user_id: alice.id,
+  name: "Alice Post",
+  desc: "Alice says Hi!",
+  date: ~N[2001-01-01 23:00:00]
+}
+Repo.insert!(p1)
+
+p2 = %Event{
+  user_id: bob.id,
+  name: "Bob Post",
+  desc: "Bob says garblarg!",
+  date: ~N[2004-01-19 23:00:00]
+}
+Repo.insert!(p2)
