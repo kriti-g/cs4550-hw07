@@ -55,6 +55,7 @@ defmodule UserStoriesWeb.EventController do
  end
 
   def show(conn, %{"id" => id}) do
+    IO.inspect([:conn, conn])
     event = conn.assigns[:event]
     render(conn, "show.html", event: event)
   end
