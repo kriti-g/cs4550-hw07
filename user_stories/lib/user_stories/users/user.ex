@@ -15,7 +15,7 @@ defmodule UserStories.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email])
+    |> cast(attrs, [:name, :email, :photo_hash])
     |> validate_required([:name, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
