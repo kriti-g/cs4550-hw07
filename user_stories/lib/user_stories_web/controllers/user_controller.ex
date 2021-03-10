@@ -16,14 +16,14 @@ defmodule UserStoriesWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    # up = user_params["photo"]
-    #
-    # user_params = if up do
-    #   {:ok, hash} = Photos.save_photo(up.filename, up.path)
-    #   Map.put(user_params, "photo_hash", hash)
-    # else
-    #   hash = Photos.get_default()
-    #   Map.put(user_params, "photo_hash", hash)
+    up = user_params["photo"]
+
+    user_params = if up do
+      {:ok, hash} = Photos.save_photo(up.filename, up.path)
+      Map.put(user_params, "photo_hash", hash)
+    else
+      hash = Photos.get_default()
+      Map.put(user_params, "photo_hash", hash)
 
     case Users.create_user(user_params) do
       {:ok, user} ->
@@ -49,15 +49,15 @@ defmodule UserStoriesWeb.UserController do
 
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Users.get_user!(id)
-    # up = user_params["photo"]
-    #
-    # user_params = if up do
-    #   # FIXME: Remove old image
-    #   {:ok, hash} = Photos.save_photo(up.filename, up.path)
-    #   Map.put(user_params, "photo_hash", hash)
-    # else
-    #   user_params
-    # end
+    up = user_params["photo"]
+
+    user_params = if up do
+      # FIXME: Remove old image
+      {:ok, hash} = Photos.save_photo(up.filename, up.path)
+      Map.put(user_params, "photo_hash", hash)
+    else
+      user_params
+    end
 
     case Users.update_user(user, user_params) do
       {:ok, user} ->
