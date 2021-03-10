@@ -20,6 +20,7 @@ defmodule UserStoriesWeb.Router do
     get "/", PageController, :index
     resources "/events", EventController
     resources "/users", UserController
+    get "/posts/photo/:id", UserController, :photo
 
     resources "/sessions", SessionController,
       only: [:create, :delete], singleton: true

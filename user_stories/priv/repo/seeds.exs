@@ -13,9 +13,12 @@
 alias UserStories.Repo
 alias UserStories.Users.User
 alias UserStories.Events.Event
+alias UserStories.Photos
 
-alice = Repo.insert!(%User{name: "alice", email: "alice@email.com"})
-bob = Repo.insert!(%User{name: "bob", email: "bob@email.com"})
+hash = Photos.get_default()
+
+alice = Repo.insert!(%User{name: "alice", photo_hash: hash, email: "alice@email.com"})
+bob = Repo.insert!(%User{name: "bob", photo_hash: hash, email: "bob@email.com"})
 
 Repo.insert!(%Event{user_id: alice.id, name: "Alice Post", desc: "Alice says Hi!", date: ~N[2001-01-01 23:00:00]})
 Repo.insert!(%Event{user_id: bob.id, name: "Bob Post", desc: "Bob says garblarg!", date: ~N[2004-01-19 23:00:00]})

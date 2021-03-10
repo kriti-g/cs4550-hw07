@@ -5,6 +5,7 @@ defmodule UserStories.Users.User do
   schema "users" do
     field :name, :string
     field :email, :string
+    field :photo_hash, :string
 
     has_many :posts, UserStories.Events.Event
 

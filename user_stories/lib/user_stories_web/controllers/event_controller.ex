@@ -15,6 +15,9 @@ defmodule UserStoriesWeb.EventController do
   end
 
   def create(conn, %{"event" => event_params}) do
+    event_params = event_params
+    |> Map.put("user_id", conn.assigns[:current_user].id)
+
     case Events.create_event(event_params) do
       {:ok, event} ->
         conn

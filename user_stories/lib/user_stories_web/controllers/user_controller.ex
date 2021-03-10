@@ -3,6 +3,7 @@ defmodule UserStoriesWeb.UserController do
 
   alias UserStories.Users
   alias UserStories.Users.User
+  alias UserStories.Photos
 
   def index(conn, _params) do
     users = Users.list_users()
@@ -15,6 +16,15 @@ defmodule UserStoriesWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    up = post_params["photo"]
+
+    post_params = if up do
+      {:ok, hash} = Photos.save_photo(up.filename, up.path)
+      Map.put(post_params, "photo_hash", hash)
+    else
+      hash = Photos.get_default()
+      Map.put(post_params, "photo_hash", hash)
+
     case Users.create_user(user_params) do
       {:ok, user} ->
         conn
@@ -39,6 +49,15 @@ defmodule UserStoriesWeb.UserController do
 
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Users.get_user!(id)
+    up = post_params["photo"]
+
+    post_params = if up do
+      # FIXME: Remove old image
+      {:ok, hash} = Photos.save_photo(up.filename, up.path)
+      Map.put(post_params, "photo_hash", hash)
+    else
+      post_params
+    end
 
     case Users.update_user(user, user_params) do
       {:ok, user} ->
@@ -50,6 +69,14 @@ defmodule UserStoriesWeb.UserController do
         render(conn, "edit.html", user: user, changeset: changeset)
     end
   end
+
+  def photo(conn, %{"id" => id}) do
+   post = Posts.get_post!(id)
+   {:ok, _name, data} = Photos.load_photo(post.photo_hash)
+   conn
+   |> put_resp_content_type("image/jpeg")
+   |> send_resp(200, data)
+ end
 
   def delete(conn, %{"id" => id}) do
     user = Users.get_user!(id)
