@@ -3,7 +3,7 @@ defmodule UserStoriesWeb.EventController do
 
   alias UserStories.Events
   alias UserStories.Events.Event
-  alias UserStories.Plugs
+  alias UserStoriesWeb.Plugs
 
   plug Plugs.RequireUser when action not in [:index, :show]
   plug :fetch_event when action in [:show, :edit, :update, :delete]
@@ -56,6 +56,7 @@ defmodule UserStoriesWeb.EventController do
 
   def show(conn, %{"id" => id}) do
     IO.inspect([:conn, conn])
+
     event = conn.assigns[:event]
     render(conn, "show.html", event: event)
   end
