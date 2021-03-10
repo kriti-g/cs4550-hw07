@@ -36,9 +36,7 @@ defmodule UserStories.Events do
       ** (Ecto.NoResultsError)
 
   """
-  def get_event!(id), do
-    Repo.get!(Event, id)
-  end
+  def get_event!(id), do: Repo.get!(Event, id)
 
   @doc """
   Creates a event.
