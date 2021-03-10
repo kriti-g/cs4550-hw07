@@ -5,7 +5,6 @@ defmodule UserStories.Events do
 
   import Ecto.Query, warn: false
   alias UserStories.Repo
-  alias UserStories.Users
   alias UserStories.Events.Event
 
   @doc """
