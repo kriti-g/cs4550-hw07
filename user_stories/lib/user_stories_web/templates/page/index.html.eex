@@ -4,13 +4,13 @@
   </div>
 </div>
 
-<%= if have_current_user?(@conn) do %>
 <div class="row">
   <div>
-    <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+    <%= if have_current_user?(@conn) do %>
+      <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+    <% end %>
   </div>
 </div>
-<% end %>
 
 <div class="row">
   <%= for event <- @events do %>
