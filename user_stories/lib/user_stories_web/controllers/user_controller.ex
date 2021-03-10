@@ -1,9 +1,9 @@
 defmodule UserStoriesWeb.UserController do
   use UserStoriesWeb, :controller
 
+  alias UserStories.Photos
   alias UserStories.Users
   alias UserStories.Users.User
-  alias UserStories.Photos
 
   def index(conn, _params) do
     users = Users.list_users()
