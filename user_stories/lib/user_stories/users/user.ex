@@ -7,7 +7,7 @@ defmodule UserStories.Users.User do
     field :email, :string
     field :photo_hash, :string
 
-    has_many :posts, UserStories.Events.Event
+    has_many :events, UserStories.Events.Event
 
     timestamps()
   end

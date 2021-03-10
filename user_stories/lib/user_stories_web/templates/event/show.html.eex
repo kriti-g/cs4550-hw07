@@ -1,10 +1,11 @@
-<h1>Show Event</h1>
-
-<h2><%= @event.name %></h2>
-<h6><%= @event.date %> - Event by <%= @event.user.name %></h6>
+<h1><%= @event.name %></h1>
+<h6><%= @event.date %></h6>
+<h6><%= @event.user.name %></h6>
 <p><%= @event.desc %></p>
 
 <nav class="nav">
+  <%= if current_user_is?(@conn, @event.user_id) do %>
   <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
+  <% end %>
   <span class="nav-link"><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
 </nav>

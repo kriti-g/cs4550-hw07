@@ -6,6 +6,8 @@ defmodule UserStoriesWeb.EventController do
   alias UserStories.Plugs
 
   plug Plugs.RequireUser when action not in [:index, :show]
+  plug :fetch_event when action in [:show, :edit, :update, :delete]
+  plug :require_owner when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
     events = Events.list_events()
@@ -32,19 +34,39 @@ defmodule UserStoriesWeb.EventController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def fetch_event(conn, _args) do
+    id = conn.params["id"]
     event = Events.get_event!(id)
+    assign(conn, :event, event)
+  end
+
+  def require_owner(conn, _args) do
+   user = conn.assigns[:current_user]
+   event = conn.assigns[:event]
+
+   if user.id == event.user_id do
+     conn
+   else
+     conn
+     |> put_flash(:error, "You don't have access to that.")
+     |> redirect(to: Routes.page_path(conn, :index))
+     |> halt()
+   end
+ end
+
+  def show(conn, %{"id" => id}) do
+    event = conn.assigns[:event]
     render(conn, "show.html", event: event)
   end
 
   def edit(conn, %{"id" => id}) do
-    event = Events.get_event!(id)
+    event = conn.assigns[:event]
     changeset = Events.change_event(event)
     render(conn, "edit.html", event: event, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "event" => event_params}) do
-    event = Events.get_event!(id)
+    event = conn.assigns[:event]
 
     case Events.update_event(event, event_params) do
       {:ok, event} ->
@@ -58,7 +80,7 @@ defmodule UserStoriesWeb.EventController do
   end
 
   def delete(conn, %{"id" => id}) do
-    event = Events.get_event!(id)
+    event = conn.assigns[:event]
     {:ok, _event} = Events.delete_event(event)
 
     conn
