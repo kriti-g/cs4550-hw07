@@ -5,7 +5,7 @@ defmodule UserStoriesWeb.EventController do
   alias UserStories.Events.Event
   alias UserStories.Plugs
 
-  plug Plugs.RequireUser when action in [:new, :edit, :create, :update]
+  plug Plugs.RequireUser when action not in [:index, :show]
 
   def index(conn, _params) do
     events = Events.list_events()
