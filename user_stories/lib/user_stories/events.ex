@@ -43,7 +43,6 @@ defmodule UserStories.Events do
 
   @doc """
   Creates a event.
-
   ## Examples
 
       iex> create_event(%{field: value})
