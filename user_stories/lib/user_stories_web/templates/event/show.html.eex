@@ -6,6 +6,7 @@
 <nav class="nav">
   <%= if current_user_is?(@conn, @event.user_id) do %>
   <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
+  <span class="nav-link"><%= link "Delete", to: Routes.event_path(@conn, :delete, @event) %></span>
   <% end %>
-  <span class="nav-link"><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
+  <span class="nav-link"><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
 </nav>
