@@ -37,6 +37,9 @@ defmodule UserStories.Invites do
   """
   def get_invite!(id), do: Repo.get!(Invite, id)
 
+  def get_invite_by_event_and_user(event, user) do
+    Repo.get_by(User, [user: user, event: event])
+  end
   @doc """
   Creates a invite.
 

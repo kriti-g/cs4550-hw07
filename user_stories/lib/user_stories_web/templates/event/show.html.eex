@@ -43,14 +43,22 @@
       action: Routes.invite_path(@conn, :create)
     ) %>
     <% end %>
-    <ul>
+    <%= if current_user_invited?(@conn, @event.invites) do %>
+    <%= render(
+      UserStoriesWeb.InviteView,
+      "form-edit.html",
+      changeset: @current_invite,
+      action: Routes.invite_path(@conn, :edit)
+    ) %>
+    <% end %>
+    <div>
       <%= for inv <- @event.invites do %>
       <%= if inv.user.name == "---CHANGE THIS TO YOUR NAME---" do %>
-      <li>Unnamed User - <%= inv.response%></li>
+      <p>Unnamed User - <%= inv.response%></p>
       <% else %>
-      <li><%= inv.user.name%> - <%= inv.response%></li>
+      <p><%= inv.user.name%> - <%= inv.response%></p>
       <% end %>
       <% end %>
-    </ul>
+    </div>
   </div>
 </div>
