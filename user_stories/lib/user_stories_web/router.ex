@@ -22,7 +22,7 @@ defmodule UserStoriesWeb.Router do
     resources "/users", UserController
     resources "/comments", CommentController
     resources "/invite", InviteController
-    get "/posts/photo/:id", UserController, :photo
+    get "/users/photo/:id", UserController, :photo
 
     resources "/sessions", SessionController,
       only: [:create, :delete], singleton: true
