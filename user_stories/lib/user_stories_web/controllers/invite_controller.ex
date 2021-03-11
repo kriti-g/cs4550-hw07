@@ -17,10 +17,10 @@ defmodule UserStoriesWeb.InviteController do
 
   def create(conn, %{"invite" => invite_params}) do
     IO.inspect(invite_params)
-    email = invite_params[:user_email]
+    email = invite_params["user_email"]
     user = Users.get_user_by_email(email)
     [link, new_invite_params] = if user do
-      lin = "http://events.gkriti.art/events/" <> to_string(invite_params[:event_id])
+      lin = "http://events.gkriti.art/events/" <> to_string(invite_params["event_id"])
       [lin, Map.put(invite_params, "user_id", user.id)]
     else
       new_user = %Users.User{
