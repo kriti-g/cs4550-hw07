@@ -66,6 +66,9 @@ defmodule UserStories.Photos do
   end
 
   def get_default do
-    "c6176daa79e0b765aaa2547b00b4f89cc40ca69e274ddcc123d271cd0a0ac574"
+    photos = Application.app_dir(:user_stories, "priv/photos")
+    path = Path.join(photos, "profile.png")
+    {:ok, hash} = save_photo("profile.png", path)
+    hash
   end
 end
