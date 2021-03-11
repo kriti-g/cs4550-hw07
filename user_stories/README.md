@@ -6,6 +6,7 @@
 * Invitees can edit and update invites, but not delete them. Inviters cannot edit or update invites, but they can delete them.
 * If an invitation to a temp user is deleted before they have registered their details, the user is deleted with the invitation.
 * Users can only be edited, updated or deleted if you are logged in as that user, or if the user is a temp user.
+* If a user does not pick a profile picture on registration, a default image is assigned to them.
 
 ## Setup
 
