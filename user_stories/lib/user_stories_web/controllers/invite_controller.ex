@@ -13,7 +13,7 @@ defmodule UserStoriesWeb.InviteController do
 
   def fetch_invite(conn, _args) do
     id = conn.params["id"]
-    inv = Invite.get_invite!(id)
+    inv = Invites.get_invite!(id)
     assign(conn, :invite, inv)
   end
 
