@@ -1,5 +1,4 @@
 defmodule UserStoriesWeb.Helpers do
-  alias UserStories.Users.User
 
   def current_user_id(conn) do
     user = conn.assigns[:current_user]
@@ -22,7 +21,7 @@ defmodule UserStoriesWeb.Helpers do
     Enum.any?(invites, match_invite?)
   end
 
-  def which_responses?(conn, invites) do
+  def which_responses?(_conn, invites) do
     inc_which? = fn (inv, arr) ->
       [yes, maybe, no, pending] = arr
       case inv.response do
