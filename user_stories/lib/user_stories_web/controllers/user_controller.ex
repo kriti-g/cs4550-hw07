@@ -5,7 +5,7 @@ defmodule UserStoriesWeb.UserController do
   alias UserStories.Users
   alias UserStories.Users.User
 
-  plug :fetch_user when action in [:show, :edit, :update, :delete]
+  plug :fetch_user when action in [:show, :edit, :update, :delete, :photo]
   plug :require_editing_rights when action in [:edit, :update, :delete]
 
   def fetch_user(conn, _args) do
@@ -94,6 +94,7 @@ end
 
   def photo(conn, %{"id" => _id}) do
    user = conn.assigns[:user]
+
    {:ok, _name, data} = Photos.load_photo(user.photo_hash)
    conn
    |> put_resp_content_type("image/jpeg")
