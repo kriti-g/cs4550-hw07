@@ -16,7 +16,7 @@ defmodule UserStories.Photos do
     save_photo(name, data, hash, meta)
   end
 
-  def save_photo(name, data, hash, meta) do
+  def save_photo(_name, data, hash, meta) do
     meta = Map.update!(meta, :refs, &(&1 + 1))
     File.write!(meta_path(hash), Jason.encode!(meta))
     File.write!(data_path(hash), data)
