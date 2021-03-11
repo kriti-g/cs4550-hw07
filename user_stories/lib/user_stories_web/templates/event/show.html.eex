@@ -8,7 +8,7 @@
     <nav class="nav">
       <%= if current_user_is?(@conn, @event.user_id) do %>
       <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
-      <span class="nav-link"><%= link "Delete", to: Routes.event_path(@conn, :delete, @event) %></span>
+      <span class="nav-link"><%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %></span>
       <% end %>
       <span class="nav-link"><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
     </nav>
@@ -54,6 +54,7 @@
       action: Routes.invite_path(@conn, :update, @current_invite.id)
     ) %>
     <% end %>
+    <p><%= which_responses?(@conn, @event.invites) %></p>
     <div>
       <%= for inv <- @event.invites do %>
       <%= if inv.user.name == "---CHANGE THIS TO YOUR NAME---" do %>

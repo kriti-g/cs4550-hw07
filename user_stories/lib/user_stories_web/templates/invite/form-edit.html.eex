@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= select f, :response,
-      [[key: "Yes", value: :Yes, selected: true], [key: "No", value: :No]],
+      [[key: "Yes", value: :Yes, selected: true], [key: "No", value: :No],  [key: "Maybe", value: :Maybe]],
       class: "form-control" %>
     <%= error_tag f, :response %>
   </div>
