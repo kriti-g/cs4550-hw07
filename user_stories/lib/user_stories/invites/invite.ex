@@ -3,9 +3,9 @@ defmodule UserStories.Invites.Invite do
   import Ecto.Changeset
 
   schema "invites" do
-    field :response, :string
-    field :event_id, :id
-    field :user_email, :id
+    field :response, Ecto.Enum, values: [:Pending, :Yes, :No]
+    belongs_to :event, UserStories.Events.Event
+    belongs_to :user, UserStories.Users.User, foreign_key: :email, references: :email
 
     timestamps()
   end
@@ -13,7 +13,7 @@ defmodule UserStories.Invites.Invite do
   @doc false
   def changeset(invite, attrs) do
     invite
-    |> cast(attrs, [:response])
-    |> validate_required([:response])
+    |> cast(attrs, [:response, :event_id, :user_email])
+    |> validate_required([:response, :event_id, :user_email])
   end
 end

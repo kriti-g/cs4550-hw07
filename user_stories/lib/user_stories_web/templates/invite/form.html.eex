@@ -5,11 +5,15 @@
     </div>
   <% end %>
 
-  <%= label f, :response %>
-  <%= text_input f, :response %>
-  <%= error_tag f, :response %>
+  <%= hidden_input f, :event_id %>
+  <%= hidden_input f, :response %>
+
+  <div class="form-group">
+    <%= text_input f, :user_email, class: "form-control" %>
+    <%= error_tag f, :user_email %>
+  </div>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Invite", class: "btn btn-primary" %>
   </div>
 <% end %>

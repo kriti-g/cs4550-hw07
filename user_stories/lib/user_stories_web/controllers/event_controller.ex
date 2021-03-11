@@ -4,6 +4,7 @@ defmodule UserStoriesWeb.EventController do
   alias UserStories.Events
   alias UserStories.Events.Event
   alias UserStories.Comments
+  alias UserStories.Invites
   alias UserStoriesWeb.Plugs
 
   plug Plugs.RequireUser when action not in [:index, :show]
@@ -56,13 +57,19 @@ defmodule UserStoriesWeb.EventController do
  end
 
   def show(conn, %{"id" => _id}) do
-    event = Events.load_comments(conn.assigns[:event])
+    ev = Events.load_comments(conn.assigns[:event])
+    event = Events.load_invites(ev)
     comm = %Comments.Comment{
       event_id: event.id,
       user_id: current_user_id(conn)
     }
+    inv = %Invites.Invite{
+      event_id: event.id,
+      response: :Pending
+    }
+    new_invite = Invites.change_event(inv)
     new_comment = Comments.change_comment(comm)
-    render(conn, "show.html", event: event, new_comment: new_comment)
+    render(conn, "show.html", event: event, new_comment: new_comment, new_invite: new_invite)
   end
 
   def edit(conn, %{"id" => _id}) do

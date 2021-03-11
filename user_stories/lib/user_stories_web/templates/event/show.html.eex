@@ -1,33 +1,53 @@
-<h1><%= @event.name %></h1>
-<h6><%= @event.date %></h6>
-<h6><%= @event.user.name %></h6>
-<p><%= @event.desc %></p>
+<div class="row">
+  <div class="col-8">
+    <h1><%= @event.name %></h1>
+    <h6><%= @event.date %></h6>
+    <h6><%= @event.user.name %></h6>
+    <p><%= @event.desc %></p>
 
-<nav class="nav">
-  <%= if current_user_is?(@conn, @event.user_id) do %>
-  <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
-  <span class="nav-link"><%= link "Delete", to: Routes.event_path(@conn, :delete, @event) %></span>
-  <% end %>
-  <span class="nav-link"><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
-</nav>
+    <nav class="nav">
+      <%= if current_user_is?(@conn, @event.user_id) do %>
+      <span class="nav-link"><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
+      <span class="nav-link"><%= link "Delete", to: Routes.event_path(@conn, :delete, @event) %></span>
+      <% end %>
+      <span class="nav-link"><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
+    </nav>
 
 
-<h5>Comments</h5>
+    <h5>Comments</h5>
 
-<%= if have_current_user?(@conn) do %>
-  <%= render(
-    UserStoriesWeb.CommentView,
-    "form.html",
-    changeset: @new_comment,
-    action: Routes.comment_path(@conn, :create)
-  ) %>
-<% end %>
+    <%= if have_current_user?(@conn) do %>
+      <%= render(
+        UserStoriesWeb.CommentView,
+        "form.html",
+        changeset: @new_comment,
+        action: Routes.comment_path(@conn, :create)
+      ) %>
+    <% end %>
 
-<%= for comm <- @event.comments do %>
-  <div class="card">
-    <div class="card-body">
-      <p>Posted by <%= comm.user.name %>, <%=comm.inserted_at%></p>
-      <p class="card-text"><%= comm.body %></p>
-    </div>
+    <%= for comm <- @event.comments do %>
+      <div class="card">
+        <div class="card-body">
+          <p>Posted by <%= comm.user.name %>, <%=comm.inserted_at%></p>
+          <p class="card-text"><%= comm.body %></p>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="col-4">
+    <h5>Responses</h5>
+    <%= if current_user_is?(@conn, @event.user_id) do %>
+    <%= render(
+      UserStoriesWeb.InviteView,
+      "form.html",
+      changeset: @new_invite,
+      action: Routes.invite_path(@conn, :create)
+    ) %>
+    <% end %>
+    <ul>
+      <%= for inv <- @event.invites do %>
+      <li><%= inv.user_email %> - <%= inv.response%></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

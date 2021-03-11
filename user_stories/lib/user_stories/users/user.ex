@@ -9,6 +9,7 @@ defmodule UserStories.Users.User do
 
     has_many :events, UserStories.Events.Event
     has_many :comments, UserStories.Comments.Comment
+    has_many :invites, UserStories.Invites.Invite
 
     timestamps()
   end
