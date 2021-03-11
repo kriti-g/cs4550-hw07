@@ -8,8 +8,8 @@ defmodule UserStories.Events.Event do
     field :name, :string
 
     belongs_to :user, UserStories.Users.User
-    has_many :comments, UserStories.Comments.Comment
-    has_many :invites, UserStories.Invites.Invite
+    has_many :comments, UserStories.Comments.Comment, on_delete: :delete_all
+    has_many :invites, UserStories.Invites.Invite, on_delete: :delete_all
 
     timestamps()
   end
