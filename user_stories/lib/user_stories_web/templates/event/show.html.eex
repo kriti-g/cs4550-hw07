@@ -2,6 +2,8 @@
   <div class="col-8">
     <h1><%= @event.name %></h1>
     <h6><%= @event.date %></h6>
+    <% src = Routes.user_path(@conn, :photo, @event.user) %>
+    <img src="<%= src %>" alt="" style="width: 50px; max-height: 50px">
     <h6><%= @event.user.name %></h6>
     <p><%= @event.desc %></p>
 
@@ -27,6 +29,8 @@
     <%= for comm <- @event.comments do %>
       <div class="card">
         <div class="card-body">
+          <% cmsrc = Routes.user_path(@conn, :photo, comm.user) %>
+          <img src="<%= cmsrc %>" alt="" style="width: 50px; max-height: 50px">
           <p>Posted by <%= comm.user.name %>, <%=comm.inserted_at%></p>
           <p class="card-text"><%= comm.body %></p>
           <%= if current_user_is?(@conn, @event.user_id) || current_user_is?(@conn, comm.user_id) do %>
