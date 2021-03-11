@@ -85,23 +85,23 @@ end
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => _id}) do
     invite = conn.assigns[:invite]
     render(conn, "show.html", invite: invite)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => _id}) do
     invite = conn.assigns[:invite]
     changeset = Invites.change_invite(invite)
     render(conn, "edit.html", invite: invite, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "invite" => invite_params}) do
+  def update(conn, %{"id" => _id, "invite" => invite_params}) do
     invite = conn.assigns[:invite]
     event = Events.get_event!(invite.event_id)
 
     case Invites.update_invite(invite, invite_params) do
-      {:ok, invite} ->
+      {:ok, _invite} ->
         conn
         |> put_flash(:info, "Successfully responded.")
         |> redirect(to: Routes.event_path(conn, :show, event))
@@ -111,7 +111,7 @@ end
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => _id}) do
     invite = conn.assigns[:invite]
     {:ok, _invite} = Invites.delete_invite(invite)
 

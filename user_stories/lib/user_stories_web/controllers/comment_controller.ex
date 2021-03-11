@@ -53,18 +53,18 @@ defmodule UserStoriesWeb.CommentController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => _id}) do
     comment = conn.assigns[:comment]
     render(conn, "show.html", comment: comment)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => _id}) do
     comment = conn.assigns[:comment]
     changeset = Comments.change_comment(comment)
     render(conn, "edit.html", comment: comment, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "comment" => comment_params}) do
+  def update(conn, %{"id" => _id, "comment" => comment_params}) do
     comment = conn.assigns[:comment]
 
     case Comments.update_comment(comment, comment_params) do
@@ -78,7 +78,7 @@ defmodule UserStoriesWeb.CommentController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => _id}) do
     comment = conn.assigns[:comment]
     {:ok, _comment} = Comments.delete_comment(comment)
 
