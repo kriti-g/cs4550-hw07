@@ -45,7 +45,11 @@
     <% end %>
     <ul>
       <%= for inv <- @event.invites do %>
-      <li> - <%= inv.response%></li>
+      <%= if inv.user.name == "---CHANGE THIS TO YOUR NAME---" do %>
+      <li>Unnamed User - <%= inv.response%></li>
+      <% else %>
+      <li><%= inv.user.name%> - <%= inv.response%></li>
+      <% end %>
       <% end %>
     </ul>
   </div>
