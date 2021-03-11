@@ -6,6 +6,45 @@ defmodule UserStoriesWeb.InviteController do
   alias UserStories.Users
   alias UserStories.Photos
 
+  plug :fetch_invite when action in [:show, :edit, :update, :delete]
+  plug :require_invitee when action in [:edit, :update]
+  plug :require_owner when action in [:delete]
+
+  def fetch_invite(conn, _args) do
+    id = conn.params["id"]
+    inv = Invite.get_invite!(id)
+    assign(conn, :invite, inv)
+  end
+
+  def require_owner(conn, _args) do
+   user = conn.assigns[:current_user]
+   inv = conn.assigns[:invite]
+   event = Events.get_event!(inv.event_id)
+
+   if user.id == event.user_id do
+     conn
+   else
+     conn
+     |> put_flash(:error, "You don't have access to that.")
+     |> redirect(to: Routes.page_path(conn, :index))
+     |> halt()
+   end
+ end
+
+ def require_invitee(conn, _args) do
+  user = conn.assigns[:current_user]
+  inv = conn.assigns[:invite]
+
+  if user.id == inv.user_id  do
+    conn
+  else
+    conn
+    |> put_flash(:error, "You don't have access to that.")
+    |> redirect(to: Routes.page_path(conn, :index))
+    |> halt()
+  end
+end
+
   def index(conn, _params) do
     invites = Invites.list_invites()
     render(conn, "index.html", invites: invites)
@@ -17,7 +56,6 @@ defmodule UserStoriesWeb.InviteController do
   end
 
   def create(conn, %{"invite" => invite_params}) do
-    IO.inspect(invite_params)
     email = invite_params["user_email"]
     user = Users.get_user_by_email(email)
     [link, new_invite_params] = if user do
@@ -47,24 +85,25 @@ defmodule UserStoriesWeb.InviteController do
   end
 
   def show(conn, %{"id" => id}) do
-    invite = Invites.get_invite!(id)
+    invite = conn.assigns[:invite]
     render(conn, "show.html", invite: invite)
   end
 
   def edit(conn, %{"id" => id}) do
-    invite = Invites.get_invite!(id)
+    invite = conn.assigns[:invite]
     changeset = Invites.change_invite(invite)
     render(conn, "edit.html", invite: invite, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "invite" => invite_params}) do
-    invite = Invites.get_invite!(id)
+    invite = conn.assigns[:invite]
+    event = Events.get_event!(invite.event_id)
 
     case Invites.update_invite(invite, invite_params) do
       {:ok, invite} ->
         conn
-        |> put_flash(:info, "Invite updated successfully.")
-        |> redirect(to: Routes.invite_path(conn, :show, invite))
+        |> put_flash(:info, "Successfully responded.")
+        |> redirect(to: Routes.event_path(conn, :show, event))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", invite: invite, changeset: changeset)
@@ -72,7 +111,7 @@ defmodule UserStoriesWeb.InviteController do
   end
 
   def delete(conn, %{"id" => id}) do
-    invite = Invites.get_invite!(id)
+    invite = conn.assigns[:invite]
     {:ok, _invite} = Invites.delete_invite(invite)
 
     conn
