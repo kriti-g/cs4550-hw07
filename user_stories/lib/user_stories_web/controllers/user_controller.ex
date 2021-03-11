@@ -5,6 +5,28 @@ defmodule UserStoriesWeb.UserController do
   alias UserStories.Users
   alias UserStories.Users.User
 
+  plug :fetch_user when action in [:show, :edit, :update, :delete]
+  plug :require_editing_rights when action in [:edit, :update, :delete]
+
+  def fetch_user(conn, _args) do
+    id = conn.params["id"]
+    user = Users.get_user!(id)
+    assign(conn, :user, user)
+  end
+
+ def require_editing_rights(conn, _args) do
+  user = conn.assigns[:user]
+
+  if current_user_is?(conn, user.id) || user.name == "---CHANGE THIS TO YOUR NAME---" do
+    conn
+  else
+    conn
+    |> put_flash(:error, "You don't have access to that.")
+    |> redirect(to: Routes.page_path(conn, :index))
+    |> halt()
+  end
+end
+
   def index(conn, _params) do
     users = Users.list_users()
     render(conn, "index.html", users: users)
@@ -37,18 +59,18 @@ defmodule UserStoriesWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Users.get_user!(id)
+    user = conn.assigns[:user]
     render(conn, "show.html", user: user)
   end
 
   def edit(conn, %{"id" => id}) do
-    user = Users.get_user!(id)
+    user = conn.assigns[:user]
     changeset = Users.change_user(user)
     render(conn, "edit.html", user: user, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Users.get_user!(id)
+    user = conn.assigns[:user]
     up = user_params["photo"]
 
     user_params = if up do
@@ -71,7 +93,7 @@ defmodule UserStoriesWeb.UserController do
   end
 
   def photo(conn, %{"id" => id}) do
-   user = Users.get_user!(id)
+   user = conn.assigns[:user]
    {:ok, _name, data} = Photos.load_photo(user.photo_hash)
    conn
    |> put_resp_content_type("image/jpeg")
@@ -79,10 +101,10 @@ defmodule UserStoriesWeb.UserController do
  end
 
   def delete(conn, %{"id" => id}) do
-    user = Users.get_user!(id)
+    user = conn.assigns[:user]
     {:ok, _user} = Users.delete_user(user)
     conn
     |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: Routes.user_path(conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

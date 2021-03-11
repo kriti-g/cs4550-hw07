@@ -8,6 +8,7 @@ defmodule UserStoriesWeb.InviteController do
   alias UserStories.Events
 
   plug :fetch_invite when action in [:show, :edit, :update, :delete]
+  plug :fetch_event when action in [:update, :delete]
   plug :require_invitee when action in [:edit, :update]
   plug :require_owner when action in [:delete]
 
@@ -17,10 +18,16 @@ defmodule UserStoriesWeb.InviteController do
     assign(conn, :invite, inv)
   end
 
+  def fetch_event(conn, _args) do
+    inv = conn.assigns[:invite]
+    event = Events.get_event!(inv.event_id)
+    assign(conn, :event, event)
+  end
+
   def require_owner(conn, _args) do
    user = conn.assigns[:current_user]
    inv = conn.assigns[:invite]
-   event = Events.get_event!(inv.event_id)
+   event = conn.assigns[:event]
 
    if user.id == event.user_id do
      conn
@@ -74,11 +81,12 @@ end
       [lin, Map.put(invite_params, "user_id", created.id)]
     end
 
+    event = Events.get_event!(new_invite_params["event_id"])
     case Invites.create_invite(new_invite_params) do
       {:ok, invite} ->
         conn
         |> put_flash(:info, "Direct your friend to this link: " <> link)
-        |> redirect(to: Routes.invite_path(conn, :show, invite))
+        |> redirect(to: Routes.event_path(conn, :show, event))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -98,7 +106,7 @@ end
 
   def update(conn, %{"id" => _id, "invite" => invite_params}) do
     invite = conn.assigns[:invite]
-    event = Events.get_event!(invite.event_id)
+    event = conn.assigns[:event]
 
     case Invites.update_invite(invite, invite_params) do
       {:ok, _invite} ->
@@ -113,10 +121,11 @@ end
 
   def delete(conn, %{"id" => _id}) do
     invite = conn.assigns[:invite]
+    event = conn.assigns[:event]
     {:ok, _invite} = Invites.delete_invite(invite)
 
     conn
     |> put_flash(:info, "Invite deleted successfully.")
-    |> redirect(to: Routes.invite_path(conn, :index))
+    |> redirect(to: Routes.event_path(conn, :show, event))
   end
 end
