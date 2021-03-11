@@ -23,7 +23,7 @@ defmodule UserStoriesWeb.InviteController do
       lin = "http://events.gkriti.art/events/" <> to_string(invite_params["event_id"])
       [lin, Map.put(invite_params, "user_id", user.id)]
     else
-      new_user = %Users.User{
+      new_user = %{
         name: "---CHANGE THIS TO YOUR NAME---",
         email: email,
       }
