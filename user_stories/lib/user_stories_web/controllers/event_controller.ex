@@ -71,7 +71,7 @@ defmodule UserStoriesWeb.EventController do
     new_invite = Invites.change_invite(inv)
     current_invite = Invites.change_invite(curr)
     new_comment = Comments.change_comment(comm)
-    render(conn, "show.html", event: event, new_comment: new_comment, new_invite: new_invite)
+    render(conn, "show.html", event: event, new_comment: new_comment, new_invite: new_invite, current_invite: current_invite)
   end
 
   def edit(conn, %{"id" => _id}) do
