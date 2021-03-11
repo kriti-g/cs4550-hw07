@@ -30,7 +30,7 @@
           <p>Posted by <%= comm.user.name %>, <%=comm.inserted_at%></p>
           <p class="card-text"><%= comm.body %></p>
           <%= if current_user_is?(@conn, @event.user_id) || current_user_is?(@conn, comm.user_id) do %>
-          <p class="nav-link"><%= link "Delete", to: Routes.page_path(@conn, :delete) %></p>
+          <p class="nav-link"><%= link "Delete", to: Routes.comment_path(@conn, :delete, comment), method: :delete, data: [confirm: "Are you sure?"] %></p>
           <% end %>
         </div>
       </div>
