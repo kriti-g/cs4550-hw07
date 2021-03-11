@@ -3,6 +3,7 @@ defmodule UserStoriesWeb.InviteController do
 
   alias UserStories.Invites
   alias UserStories.Invites.Invite
+  alias UserStories.Users
 
   def index(conn, _params) do
     invites = Invites.list_invites()
@@ -15,10 +16,25 @@ defmodule UserStoriesWeb.InviteController do
   end
 
   def create(conn, %{"invite" => invite_params}) do
-    case Invites.create_invite(invite_params) do
+    email = invite_params[:user_email]
+    user = Users.get_user_by_email(email)
+    [link, new_invite_params] = if user do
+      lin = "http://events.gkriti.art/events/" <> to_string(invite_params[:event_id])
+      [lin, Map.put(invite_params, "user_id", user.id)]
+    else
+      new_user = %Users.User{
+        name: "---CHANGE THIS TO YOUR NAME---",
+        email: email,
+      }
+      {:ok, created} = Users.create_user(new_user)
+      lin = "http://events.gkriti.art/users/" <>  to_string(created.id) <> "/edit"
+      [lin, Map.put(invite_params, "user_id", created.id)]
+    end
+
+    case Invites.create_invite(new_invite_params) do
       {:ok, invite} ->
         conn
-        |> put_flash(:info, "Invite created successfully.")
+        |> put_flash(:info, "Direct your friend to this link" <> link)
         |> redirect(to: Routes.invite_path(conn, :show, invite))
 
       {:error, %Ecto.Changeset{} = changeset} ->
