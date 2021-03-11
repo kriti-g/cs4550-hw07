@@ -7,7 +7,11 @@
       <th>Date</th>
       <th>Desc</th>
       <th>User</th>
-      <th><span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span></th>
+      <th>
+        <%= if have_current_user?(@conn) do %>
+        <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>
