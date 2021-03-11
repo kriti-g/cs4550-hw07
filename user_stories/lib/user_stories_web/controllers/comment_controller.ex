@@ -65,7 +65,7 @@ end
     comment_params = comment_params
     |> Map.put("user_id", current_user_id(conn))
     case Comments.create_comment(comment_params) do
-      {:ok, comment} ->
+      {:ok, _comment} ->
         conn
         |> put_flash(:info, "Comment created successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
@@ -90,7 +90,7 @@ end
     comment = conn.assigns[:comment]
     event = conn.assigns[:event]
     case Comments.update_comment(comment, comment_params) do
-      {:ok, comment} ->
+      {:ok, _comment} ->
         conn
         |> put_flash(:info, "Comment updated successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))

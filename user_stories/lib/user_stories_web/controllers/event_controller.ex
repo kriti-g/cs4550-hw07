@@ -108,6 +108,6 @@ defmodule UserStoriesWeb.EventController do
 
     conn
     |> put_flash(:info, "Event deleted successfully.")
-    |> redirect(to: Routes.page_path(@conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

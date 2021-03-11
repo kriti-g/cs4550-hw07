@@ -58,18 +58,18 @@ end
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => _id}) do
     user = conn.assigns[:user]
     render(conn, "show.html", user: user)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => _id}) do
     user = conn.assigns[:user]
     changeset = Users.change_user(user)
     render(conn, "edit.html", user: user, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
+  def update(conn, %{"id" => _id, "user" => user_params}) do
     user = conn.assigns[:user]
     up = user_params["photo"]
 
@@ -92,7 +92,7 @@ end
     end
   end
 
-  def photo(conn, %{"id" => id}) do
+  def photo(conn, %{"id" => _id}) do
    user = conn.assigns[:user]
    {:ok, _name, data} = Photos.load_photo(user.photo_hash)
    conn
@@ -100,7 +100,7 @@ end
    |> send_resp(200, data)
  end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => _id}) do
     user = conn.assigns[:user]
     {:ok, _user} = Users.delete_user(user)
     conn

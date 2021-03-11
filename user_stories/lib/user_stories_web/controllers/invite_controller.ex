@@ -26,7 +26,6 @@ defmodule UserStoriesWeb.InviteController do
 
   def require_owner(conn, _args) do
    user = conn.assigns[:current_user]
-   inv = conn.assigns[:invite]
    event = conn.assigns[:event]
 
    if user.id == event.user_id do
@@ -83,7 +82,7 @@ end
 
     event = Events.get_event!(new_invite_params["event_id"])
     case Invites.create_invite(new_invite_params) do
-      {:ok, invite} ->
+      {:ok, _invite} ->
         conn
         |> put_flash(:info, "Direct your friend to this link: " <> link)
         |> redirect(to: Routes.event_path(conn, :show, event))
