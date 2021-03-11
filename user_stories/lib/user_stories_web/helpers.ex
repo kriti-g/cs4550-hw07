@@ -13,4 +13,13 @@ defmodule UserStoriesWeb.Helpers do
   def current_user_is?(conn, user_id) do
     current_user_id(conn) == user_id
   end
+
+  def current_user_invited?(conn, invites) do
+    current_id = current_user_id(conn)
+    match_invite? = fn (inv) ->
+      current_id == inv.user_id
+    end
+    Enum.any?(invites, match_invite?)
+  end
+
 end

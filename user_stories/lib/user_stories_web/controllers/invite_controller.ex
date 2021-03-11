@@ -35,7 +35,7 @@ defmodule UserStoriesWeb.InviteController do
     case Invites.create_invite(new_invite_params) do
       {:ok, invite} ->
         conn
-        |> put_flash(:info, "Direct your friend to this link" <> link)
+        |> put_flash(:info, "Direct your friend to this link: " <> link)
         |> redirect(to: Routes.invite_path(conn, :show, invite))
 
       {:error, %Ecto.Changeset{} = changeset} ->

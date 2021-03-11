@@ -15,8 +15,7 @@
 
 
     <h5>Comments</h5>
-
-    <%= if have_current_user?(@conn) do %>
+    <%= if current_user_invited?(@conn, @event.invites) do %>
       <%= render(
         UserStoriesWeb.CommentView,
         "form.html",

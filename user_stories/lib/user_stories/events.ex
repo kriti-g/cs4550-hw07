@@ -27,7 +27,7 @@ defmodule UserStories.Events do
   end
 
   def load_invites(%Event{} = event) do
-    Repo.preload(event, [:invites])
+    Repo.preload(event, [invites: :user])
   end
 
   @doc """
