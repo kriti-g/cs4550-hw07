@@ -16,6 +16,7 @@ defmodule UserStoriesWeb.InviteController do
   end
 
   def create(conn, %{"invite" => invite_params}) do
+    IO.inspect(invite_params)
     email = invite_params[:user_email]
     user = Users.get_user_by_email(email)
     [link, new_invite_params] = if user do
