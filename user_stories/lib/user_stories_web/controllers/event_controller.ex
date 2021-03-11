@@ -68,8 +68,12 @@ defmodule UserStoriesWeb.EventController do
       response: :Pending
     }
     curr = Invites.get_invite_by_event_and_user(event.id, current_user_id(conn))
+    current_change = if curr do
+      Invites.change_invite(curr)
+    else
+      Invites.change_invite(inv)
+    end
     new_invite = Invites.change_invite(inv)
-    current_change = Invites.change_invite(curr)
     new_comment = Comments.change_comment(comm)
     render(conn, "show.html", event: event, new_comment: new_comment, new_invite: new_invite, current_change: current_change, current_invite: curr)
   end
