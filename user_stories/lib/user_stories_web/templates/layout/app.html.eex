@@ -27,6 +27,9 @@
         <%= @current_user.name %>
       </span>
       <span class="nav-link">
+        <%= link "Profile", to: Routes.user_path(@conn, :show, @current_user) %>
+      </span>
+      <span class="nav-link">
         <%= link("Logout", to: Routes.session_path(@conn, :delete),
         method: :delete) %>
       </span>

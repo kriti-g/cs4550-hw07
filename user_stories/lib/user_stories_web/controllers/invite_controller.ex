@@ -4,6 +4,7 @@ defmodule UserStoriesWeb.InviteController do
   alias UserStories.Invites
   alias UserStories.Invites.Invite
   alias UserStories.Users
+  alias UserStories.Photos
 
   def index(conn, _params) do
     invites = Invites.list_invites()
@@ -23,9 +24,11 @@ defmodule UserStoriesWeb.InviteController do
       lin = "http://events.gkriti.art/events/" <> to_string(invite_params["event_id"])
       [lin, Map.put(invite_params, "user_id", user.id)]
     else
+      hash = Photos.get_default()
       new_user = %{
         name: "---CHANGE THIS TO YOUR NAME---",
         email: email,
+        photo_hash: hash
       }
       {:ok, created} = Users.create_user(new_user)
       lin = "http://events.gkriti.art/users/" <>  to_string(created.id) <> "/edit"
