@@ -122,10 +122,10 @@ end
     invite = conn.assigns[:invite]
     event = conn.assigns[:event]
     user = Users.get_user!(invite.user_id)
+    {:ok, _invite} = Invites.delete_invite(invite)
     if user.name == "---CHANGE THIS TO YOUR NAME---" do
       Users.delete_user(user)
     end
-    {:ok, _invite} = Invites.delete_invite(invite)
 
     conn
     |> put_flash(:info, "Invite deleted successfully.")
