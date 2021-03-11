@@ -59,13 +59,13 @@
       <%= if inv.user.name == "---CHANGE THIS TO YOUR NAME---" do %>
       <p>Unnamed User - <%= inv.response%>
         <%= if current_user_is?(@conn, @event.user_id) do %>
-        <span> - <%= link "Uninvite", to: Routes.invite_path(@conn, :delete, inv) %></span>
+        <span> - <%= link "Uninvite", to: Routes.invite_path(@conn, :delete, invite), method: :delete, data: [confirm: "Are you sure?"] %></span>
         <% end %>
       </p>
       <% else %>
       <p><%= inv.user.name%> - <%= inv.response%>
         <%= if current_user_is?(@conn, @event.user_id) do %>
-        <span> - <%= link "Uninvite", to: Routes.invite_path(@conn, :delete, inv) %></span>
+        <span> - <%= link "Uninvite", to: Routes.invite_path(@conn, :delete, invite), method: :delete, data: [confirm: "Are you sure?"] %></span>
         <% end %>
       </p>
       <% end %>
