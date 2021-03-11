@@ -5,6 +5,7 @@ defmodule UserStoriesWeb.InviteController do
   alias UserStories.Invites.Invite
   alias UserStories.Users
   alias UserStories.Photos
+  alias UserStories.Events
 
   plug :fetch_invite when action in [:show, :edit, :update, :delete]
   plug :require_invitee when action in [:edit, :update]
