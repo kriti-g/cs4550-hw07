@@ -1,6 +1,13 @@
 # UserStories
 
-Includes code from and based on Prof Tuck's in-class PhotoBlog example.
+## Design decisions
+
+* Includes code from and based on Prof Tuck's in-class PhotoBlog example.
+* Invitees can edit and update invites, but not delete them. Inviters cannot edit or update invites, but they can delete them.
+* If an invitation to a temp user is deleted before they have registered their details, the user is deleted with the invitation.
+* Users can only be edited, updated or deleted if you are logged in as that user, or if the user is a temp user.
+
+## Setup
 
 To start your Phoenix server:
 
