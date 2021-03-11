@@ -68,12 +68,10 @@ defmodule UserStoriesWeb.EventController do
       response: :Pending
     }
     curr = Invites.get_invite_by_event_and_user(event.id, current_user_id(conn))
-    IO.inspect([:curr, curr])
     new_invite = Invites.change_invite(inv)
-    current_invite = Invites.change_invite(curr)
-    IO.inspect([:curr2, current_invite])
+    current_change = Invites.change_invite(curr)
     new_comment = Comments.change_comment(comm)
-    render(conn, "show.html", event: event, new_comment: new_comment, new_invite: new_invite, current_invite: current_invite)
+    render(conn, "show.html", event: event, new_comment: new_comment, new_invite: new_invite, current_change: current_change, current_invite: curr)
   end
 
   def edit(conn, %{"id" => _id}) do

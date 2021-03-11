@@ -47,8 +47,8 @@
     <%= render(
       UserStoriesWeb.InviteView,
       "form-edit.html",
-      changeset: @current_invite,
-      action: Routes.invite_path(@conn, :update, 1)
+      changeset: @current_change,
+      action: Routes.invite_path(@conn, :update, @current_invite.id)
     ) %>
     <% end %>
     <div>
