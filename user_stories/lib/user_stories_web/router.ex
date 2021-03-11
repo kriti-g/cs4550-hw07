@@ -21,6 +21,7 @@ defmodule UserStoriesWeb.Router do
     resources "/events", EventController
     resources "/users", UserController
     resources "/comments", CommentController
+    resources "/invite", InviteController
     get "/posts/photo/:id", UserController, :photo
 
     resources "/sessions", SessionController,

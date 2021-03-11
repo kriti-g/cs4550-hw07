@@ -26,7 +26,7 @@
 <%= for comm <- @event.comments do %>
   <div class="card">
     <div class="card-body">
-      <p>Posted by <%= comm.user.name %> at <%=comm.inserted_at%></p>
+      <p>Posted by <%= comm.user.name %>, <%=comm.inserted_at%></p>
       <p class="card-text"><%= comm.body %></p>
     </div>
   </div>
