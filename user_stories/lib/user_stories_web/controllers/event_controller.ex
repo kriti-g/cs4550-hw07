@@ -67,7 +67,11 @@ defmodule UserStoriesWeb.EventController do
       event_id: event.id,
       response: :Pending
     }
-    curr = Invites.get_invite_by_event_and_user(event.id, current_user_id(conn))
+    curr = if current_user_id(conn) do
+      Invites.get_invite_by_event_and_user(event.id, current_user_id(conn))
+    else
+      nil
+    end
     current_change = if curr do
       Invites.change_invite(curr)
     else
