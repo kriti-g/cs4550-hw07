@@ -48,7 +48,7 @@
       UserStoriesWeb.InviteView,
       "form-edit.html",
       changeset: @current_invite,
-      action: Routes.invite_path(@conn, :edit, 1)
+      action: Routes.invite_path(@conn, :update, 1)
     ) %>
     <% end %>
     <div>
