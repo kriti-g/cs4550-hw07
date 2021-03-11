@@ -67,7 +67,7 @@ defmodule UserStoriesWeb.EventController do
       event_id: event.id,
       response: :Pending
     }
-    new_invite = Invites.change_event(inv)
+    new_invite = Invites.change_invite(inv)
     new_comment = Comments.change_comment(comm)
     render(conn, "show.html", event: event, new_comment: new_comment, new_invite: new_invite)
   end

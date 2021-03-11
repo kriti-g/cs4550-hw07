@@ -46,7 +46,7 @@
     <% end %>
     <ul>
       <%= for inv <- @event.invites do %>
-      <li><%= inv.user_email %> - <%= inv.response%></li>
+      <li> - <%= inv.response%></li>
       <% end %>
     </ul>
   </div>
