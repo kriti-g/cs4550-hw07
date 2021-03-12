@@ -47,7 +47,7 @@ defmodule UserStories.Photos do
     env = Application.get_env(:user_stories, :env)
 
     Path.expand("~/.local/data/user_stories")
-    |> Path.join("#{Mix.env}")
+    |> Path.join("#{env}")
     |> Path.join(String.slice(hash, 0, 2))
     |> Path.join(String.slice(hash, 2, 30))
   end
