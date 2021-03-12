@@ -41,11 +41,9 @@ end
     up = user_params["photo"]
     user_params = if up do
       {:ok, hash} = Photos.save_photo(up.filename, up.path)
-      IO.inspect([:uploadhash, hash])
       Map.put(user_params, "photo_hash", hash)
     else
       hash = Photos.get_default()
-      IO.inspect([:defhash, hash])
       Map.put(user_params, "photo_hash", hash)
     end
 

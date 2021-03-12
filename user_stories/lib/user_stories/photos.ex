@@ -30,8 +30,6 @@ defmodule UserStories.Photos do
     {:ok, Map.get(meta, :name), data}
   end
 
-  # TODO: drop_photo
-
   def read_meta(hash) do
     with {:ok, data} <- File.read(meta_path(hash)),
          {:ok, meta} <- Jason.decode(data, keys: :atoms)
@@ -43,7 +41,6 @@ defmodule UserStories.Photos do
   end
 
   def base_path(hash) do
-    # FIXME: Actually make this work
     env = Application.get_env(:user_stories, :env)
 
     Path.expand("~/.local/data/user_stories")

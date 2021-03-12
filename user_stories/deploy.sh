@@ -9,7 +9,7 @@ export PATH="$PATH:$NODEBIN"
 
 echo "Building..."
 
-mix deps.get
+mix deps.get --only prod
 mix compile
 (cd assets && npm install)
 (cd assets && webpack --mode production)
