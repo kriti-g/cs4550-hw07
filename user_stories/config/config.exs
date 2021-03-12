@@ -16,7 +16,8 @@ config :user_stories, UserStoriesWeb.Endpoint,
   secret_key_base: "MeWVPtQ0BEbLLpZM1+E2Uj8c391mp6bONUX3+tpbgXpaI+99PhFJ3ftLWGnL2vo6",
   render_errors: [view: UserStoriesWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: UserStories.PubSub,
-  live_view: [signing_salt: "o8kzziyu"]
+  live_view: [signing_salt: "o8kzziyu"],
+  env: Mix.env()
 
 # Configures Elixir's Logger
 config :logger, :console,
