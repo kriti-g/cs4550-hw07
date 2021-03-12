@@ -7,7 +7,7 @@ defmodule UserStories.Users.User do
     field :email, :string
     field :photo_hash, :string
 
-    has_many :events, UserStories.Events.Event
+    has_many :events, UserStories.Events.Event, on_delete: :delete_all
     has_many :comments, UserStories.Comments.Comment, on_delete: :delete_all
     has_many :invites, UserStories.Invites.Invite, on_delete: :delete_all
 
